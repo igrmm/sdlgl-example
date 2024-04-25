@@ -10,4 +10,5 @@ else
     cmake ..
 fi
 cmake --build .
-./sdlgl-example
+cd ../assets
+../build/sdlgl-example

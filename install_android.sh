@@ -17,6 +17,7 @@ if [ ! -d "build/android" ]; then
 
     #scaping $ and /
     sed -i "s/LOCAL_SRC_FILES.*/LOCAL_SRC_FILES := \$(wildcard \$(LOCAL_PATH)\/..\/..\/..\/..\/..\/..\/src\/*.c)/" src/Android.mk
+    sed -i "s/-lGLESv2/-lGLESv3/" src/Android.mk
 
     cd ../
     sed -i "s/Game/$APP_NAME/" src/main/res/values/strings.xml
@@ -35,6 +36,7 @@ if [ ! -d "build/android" ]; then
     sed -i "s/android:theme=.*/android:theme=\"@style\/Theme\"/" src/main/AndroidManifest.xml
 
     cd ../../../../
+    ln -s $(pwd)/assets build/android/$ANDROID_PROJECT/app/src/main/
 fi
 cd build/android/$ANDROID_PROJECT/
 ./gradlew installDebug
